@@ -559,7 +559,7 @@ if (obj is Animal)
 
             Ответ:
 
-                object obj = new Animal();
+                object obj = new Animal(); 
 
                 if (obj is Animal) 
                 {
