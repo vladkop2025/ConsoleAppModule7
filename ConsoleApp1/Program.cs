@@ -563,7 +563,7 @@ if (obj is Animal)
 
                 if (obj is Animal) 
                 {
-                    Console.WriteLine("Объект класса Animal");
+                    Console.WriteLine("Объект класса Animal"); 
                 }
 
             */
