@@ -11,11 +11,11 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             /* Модуль 7.ООП.Продолжение
-              
+
             *************************
             * 7.1. Наследование
             *************************
-             
+
             Наследование — это возможность объекта являться потомком другого объекта, перенимая его характерные свойства и методы.
             При наследовании рассматривают 2 класса: родитель и наследник. Cтруктуры не могут наследоваться друг от друга или от других классов/
 
@@ -30,7 +30,7 @@ namespace ConsoleApp1
 
                 class InheritedClass : BaseClass
                 {
-    
+
                 }
 
             В данном примере InheritedClass является наследником, а BaseClass — базовым классом.
@@ -93,12 +93,12 @@ namespace ConsoleApp1
             Все классы по умолчанию могут наследоваться. Но у этого механизма есть ряд ограничений:
 
                     Не поддерживается множественное наследование классов. То есть класс может наследоваться только от одного класса.
-                    
+
                     Тип доступа к классу-наследнику должен быть таким же, как и у базового класса, или более строгим. То есть нельзя 
                     поставить наследнику модификатор public, если базовый класс имеет модификатор internal.
 
              Если класс имеет модификатор sealed, то от этого класса нельзя наследовать и создавать производные классы. Например, следующий класс не допускает создание наследников:
-            
+
                     sealed class Admin
                     {
                     }  
@@ -197,17 +197,17 @@ namespace ConsoleApp1
             Ключевое слово this представляет ссылку на текущий экземпляр класса. Оно может служить для указания на элементы класса в случае 
             совпадения имен параметров методов/конструктора с наименованием полей класса, например:
 
-class Obj
-{
-	private string name;
-	private string description;
+    class Obj
+    {
+    private string name;
+    private string description;
 
-	public Obj(string name, string description)
-	{
-		this.name = name;
-		this.description = description;
-	}
-}
+    public Obj(string name, string description)
+    {
+        this.name = name;
+        this.description = description;
+    }
+    }
 
             Конструктор класса Obj принимает параметры name и description, когда класс уже содержит поля с такими именами. В области видимости
             конструктора параметры имеют больший приоритет, поэтому при обращении к переменной "name" компилятор будет обращаться к параметру. 
@@ -222,22 +222,22 @@ class Obj
             Данный синтаксис неслучайно похож на наследование: конструктор, к которому мы обращаемся выполнится раньше, чем код, который идет в вызываемом
             конструкторе, что можно считать как наследование функциональности конструктора.
 
-class Obj
-{
-	private string name;
-	private string description;
+    class Obj
+    {
+    private string name;
+    private string description;
 
-	public Obj()
-	{
-		Console.WriteLine("Вызван конструктор без параметров");
-	}
+    public Obj()
+    {
+        Console.WriteLine("Вызван конструктор без параметров");
+    }
 
-	public Obj(string name, string description) : this()
-	{
-		this.name = name;
-		this.description = description;
-	}
-}
+    public Obj(string name, string description) : this()
+    {
+        this.name = name;
+        this.description = description;
+    }
+    }
 
             В данный пример мы добавили конструктор без параметров, который лишь выводит сообщение в консоль, и указали его вызов после конструктора 
             с 2 параметрами. Таким образом, когда конструктор с 2 параметрами будет вызван, например, var obj = new Obj("Объект", "Нет описания");, 
@@ -249,18 +249,18 @@ class Obj
             Задание 7.1.6
             Реализуйте конструктор, заполняющий поля для следующего класса:
 
-class Obj
-{
-	private string name;
-	private string owner;
-	private int length;
-	private int count;
+    class Obj
+    {
+    private string name;
+    private string owner;
+    private int length;
+    private int count;
 
-	public Obj(string name, string ownerName, int objLength, int count)
-	{
-		// ...
-	}
-}
+    public Obj(string name, string ownerName, int objLength, int count)
+    {
+        // ...
+    }
+    }
 
                 public Obj(string name, string ownerName, int objLength, int count) 
                 {
@@ -273,31 +273,31 @@ class Obj
             Задание 7.1.7 
             Впишите пропущенный код для параметров в Console.WriteLine вместо ??? так, чтобы в консоли выводилось "Привет, Грег, я интеллектуальный помощник Олег":
 
-class SmartHelper 
-{
-  private string name;
+    class SmartHelper 
+    {
+    private string name;
 
-  public SmartHelper(string name) 
-  {
+    public SmartHelper(string name) 
+    {
     this.name = name;
-  }
+    }
 
-  public void Greetings(string name) 
-  {
+    public void Greetings(string name) 
+    {
     Console.WriteLine("Привет, {0}, я интеллектуальный помощник {1}", ???);
-  }
-}
-class Program 
-{
-  static void Main(string[] args) 
-  {
+    }
+    }
+    class Program 
+    {
+    static void Main(string[] args) 
+    {
     SmartHelper helper = new SmartHelper("Олег");
     helper.Greetings("Грег");
 
     Console.ReadKey();
-  }
+    }
 
-}
+    }
 
             Чтобы в консоли выводилось "Привет, Грег, я интеллектуальный помощник Олег", нужно передать параметры в метод Console.WriteLine в правильном порядке. 
             В данном случае, первый параметр {0} будет заменен на значение переменной name, переданной в метод Greetings, а второй параметр {1} будет заменен на 
@@ -307,27 +307,27 @@ class Program
 
             Кроме this существует и ключевое слово base. С его помощью мы можем обратиться к базовому классу, в частности к его конструкторам:
 
-class BaseClass
-{
-	public string Name;
-	protected string Description;
-	private int value;
+    class BaseClass
+    {
+    public string Name;
+    protected string Description;
+    private int value;
 
-	public BaseClass(int value)
-	{
-		this.value = value;
-	}
-}
+    public BaseClass(int value)
+    {
+        this.value = value;
+    }
+    }
 
-class InheritedClass : BaseClass
-{
-	private int newValue;
+    class InheritedClass : BaseClass
+    {
+    private int newValue;
 
-	public InheritedClass(int newValue) : base(100)
-	{
-		this.newValue = newValue;
-	}
-}
+    public InheritedClass(int newValue) : base(100)
+    {
+        this.newValue = newValue;
+    }
+    }
 
             В конструкторе класса InheritedClass мы обратились к конструктору базового класса, указав значение параметра value, равное 100. 
             Таким образом, аналогично вызову других конструкторов внутри класса, базовый конструктор выполнится до того, как начнет выполнение 
@@ -337,10 +337,10 @@ class InheritedClass : BaseClass
             а только конструкторы с параметрами, то в производном классе мы обязательно должны вызвать один из этих конструкторов через ключевое слово base. 
             Так, если мы уберем конструктор из InheritedClass:
 
-class InheritedClass : BaseClass
-{
-	private int newValue;
-}
+    class InheritedClass : BaseClass
+    {
+    private int newValue;
+    }
 
             То мы получим ошибку:
 
@@ -365,22 +365,22 @@ class InheritedClass : BaseClass
             Для класса DerivedClass создайте 2 конструктора: один, принимающий 2 параметра — name и description, второй — принимающий 3 параметра name, description и counter.
 
 
-class BaseClass 
-{
-  protected string Name;
+    class BaseClass 
+    {
+    protected string Name;
 
-  public BaseClass(string name) 
-  {
+    public BaseClass(string name) 
+    {
     Name = name;
-  }
-}
+    }
+    }
 
-class DerivedClass: BaseClass 
-{
-  public string Description;
+    class DerivedClass: BaseClass 
+    {
+    public string Description;
 
-  public int Counter;
-}
+    public int Counter;
+    }
 
                         public DerivedClass(string name, string description) : base(name) 
                         {
@@ -402,7 +402,7 @@ class DerivedClass: BaseClass
             Рассмотрим схему наследования для HybridCar: HybrydCar -> Car -> Object
 
             Благодаря отношению is-a экземпляр HybridCar может быть использован как экземпляр типа Car, а тот в свою очередь — как экземпляр Object.
-            
+
             Таким образом реализуются восходящие преобразования (Upcast). Гибридный автомобиль является автомобилем и может использоваться как обычный автомобиль, 
             без надобности уточнения его топлива.
 
@@ -413,22 +413,22 @@ class DerivedClass: BaseClass
 
             Таким образом, над этими классами мы можем производить как явные, так и неявные восходящие преобразования:
 
-class Creature { }
+    class Creature { }
 
-class Animal : Creature { }
+    class Animal : Creature { }
 
-class Human : Creature { }
+    class Human : Creature { }
 
-class HomoSapiens : Human { }
+    class HomoSapiens : Human { }
 
-class Program
-{
-	static void Main(string[] args)
-	{
-		HomoSapiens hs = new HomoSapiens();
-		Human human = hs;
-		Creature creature = (Creature)human;
-		Creature secondCreature = new Animal();
+    class Program
+    {
+    static void Main(string[] args)
+    {
+        HomoSapiens hs = new HomoSapiens();
+        Human human = hs;
+        Creature creature = (Creature)human;
+        Creature secondCreature = new Animal();
 
             В данном случае переменной human, которая представляет тип Human, присваивается ссылка на объект HomoSapiens. Таким образом автоматически 
             выполняется неявное восходящее преобразование — преобразование к типу, который находится вверху иерархии классов, то есть к базовому классу.
@@ -467,7 +467,7 @@ class Program
 
                 if (secondCreature is Animal)
                 {
-	                Console.WriteLine("Экземпляр имеет тип Animal");
+                    Console.WriteLine("Экземпляр имеет тип Animal");
                 }
 
             Важно отметить, что is выдает значение true не только при проверке на оригинальный тип экземпляра объекта (например, secondCreature 
@@ -484,12 +484,12 @@ class Program
             Тогда, чтобы воспользоваться переменной приведенного типа, нужно произвести проверку и только потом преобразование:
 
                 Creature secondCreature = new Animal();
-			
+
                 //...
-			
+
                 if (secondCreature is Animal)
                 {
-	                Animal animal = (Animal)secondCreature;
+                    Animal animal = (Animal)secondCreature;
                 }
 
             Но такой способ не очень хорош, поскольку при попытке преобразования secondCreature к типу Animal произойдет ещё одна проверка типа, 
@@ -504,7 +504,7 @@ class Program
 
                     if (animal != null)
                     {
-	                // Использование значения animal
+                    // Использование значения animal
                     }
 
             И вроде бы всё прекрасно. У нас есть is и as для своих целей. Но все равно, некоторые проблемы остаются:
@@ -517,7 +517,7 @@ class Program
 
                     if (secondCreature is Animal animal)
                     {
-	                // Использование значения animal
+                    // Использование значения animal
                     }
 
             После указания типа для оператора is добавилось наименование переменной. Таким образом, если тип соответствует Animal, то в области видимости
@@ -529,33 +529,33 @@ class Program
             Задание 7.1.11 
             Выберите тот вариант кода, в котором будет выведено сообщение в консоль:
 
-object obj = new Animal();
+    object obj = new Animal();
 
-if (obj as Animal) 
-{
-  Console.WriteLine("Объект класса Animal");
-}
+    if (obj as Animal) 
+    {
+    Console.WriteLine("Объект класса Animal");
+    }
 
-object obj = new object();
+    object obj = new object();
 
-if (obj is Animal) 
-{
-  Console.WriteLine("Объект класса Animal");
-}
+    if (obj is Animal) 
+    {
+    Console.WriteLine("Объект класса Animal");
+    }
 
-object obj = new Animal();
+    object obj = new Animal();
 
-if (obj is Animal) 
-{
-  Console.WriteLine("Объект класса Animal");
-}
+    if (obj is Animal) 
+    {
+    Console.WriteLine("Объект класса Animal");
+    }
 
-Animal obj = new object();
+    Animal obj = new object();
 
-if (obj is Animal) 
-{
-  Console.WriteLine("Объект класса Animal");
-}
+    if (obj is Animal) 
+    {
+    Console.WriteLine("Объект класса Animal");
+    }
 
             Ответ:
 
@@ -568,6 +568,53 @@ if (obj is Animal)
 
             */
 
+            HomoSapiens hs = new HomoSapiens();
+            Human human = hs;
+            //Пример UpCast - неявное восходящее преобразование
+            // В данном случае переменной human, которая представляет тип Human, присваивается ссылка на объект HomoSapiens. Таким образом автоматически
+            // выполняется неявное восходящее преобразование — преобразование к типу, который находится вверху иерархии классов, то есть к базовому классу.
+            //В итоге переменные hs и human будут указывать на один и тот же объект в памяти, но переменной human будет доступна только та часть, которая представляет функционал типа Human.
+            Creature creature = (Creature)human;
+            //При преобразовании уже переменной human в тип Creature используется явное преобразование, но принцип работы остается таким же.
+            Creature secondCreature = new Animal();
+
+            //Пример Downcast - нисходящие преобразование ( Данное преобразование не может быть неявным, поскольку это вызовет ошибку на этапе компиляции)
+            //Помимо восходящих преобразований есть и обратные им — нисходящие преобразования(Downcast) от базового типа к производному.Например, когда вы храните экземпляр производного
+            //типа в переменной базового типа. Чтобы использовать какой - то метод или поле, не отраженное в базовом классе, вы можете произвести нисходящее преобразование
+            //и получить ссылку на экземпляр производного типа:
+            // object obj = new Animal();
+            // Animal animal = (Animal)obj;
+
+            //Но компилятор не может проверить, какой тип будет находиться в obj, и преобразование может пройти некорректно. Например, если в переменной obj будет не экземпляр типа Animal, а экземпляр object:
+            // object obj = new object();
+            // Animal animal = (Animal)obj;
+            //Компилятор не увидит в этом ошибки. Но преобразовать такой тип у программы не получится — происходит ошибка во время исполнения программы. О том, как работать с исключениями,
+            //вы узнаете чуть позже. Сейчас поговорим о том, как избегать таких ситуаций.
+
+            //Для проверки возможности преобразования используется ключевое слово is:
+            
+            if (secondCreature is Animal)
+            {
+                Console.WriteLine("Экземпляр имеет тип Animal");
+            }
+
+            //Язык C# постоянно развивается - Сопоставление шаблонов - более правильное решение 
+            if (secondCreature is Animal animal)
+            {
+                // Использование значения animal
+                Console.WriteLine("Экземпляр имеет тип Animal");
+            }
+
         }
+
+
+        class Creature { }
+
+        class Animal : Creature { }
+
+        class Human : Creature { }
+
+        class HomoSapiens : Human { }
+
     }
 }
