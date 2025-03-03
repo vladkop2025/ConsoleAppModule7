@@ -7,21 +7,45 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            // Создаем клиента
+
+            // Создаем 1 клиента
             var customer = new Customer { Name = "Daniel", ContactInfo = "my@mail.ru" };
 
-            // Пример использования других классов
+            // Пример 1 использования класса HomeDelivery
             var homeDelivery = new HomeDelivery { Address = "123456 Moscow", CourierName = "First Client" };
             var order = new Order<HomeDelivery>(homeDelivery)
             {
                 Number = 1,
             };
 
+            // Создаем 1 товар
             var product = new Product { Id = 1, Name = "Computer", Price = 10000 };
+
+            // Добавляем 1 товар в заказ
             order.Products.Add(product);
 
+            //Заказ в коллекцию заказов
             OrderManager.AddOrder(order);
+
+            // Пример 2 использования класса HomeDelivery
+            homeDelivery = new HomeDelivery { Address = "123456 London", CourierName = "Second Client" };
+            order = new Order<HomeDelivery>(homeDelivery)
+            {
+                Number = 2,
+            };
+
+            // Создаем 2 товар
+            product = new Product { Id = 1, Name = "Table", Price = 5000 };
+
+            // Добавляем 2 товар в заказ
+            order.Products.Add(product);
+
+            //Заказ в коллекцию заказов
+            OrderManager.AddOrder(order);
+
+            //Вывод всех заказов в консоль
             OrderManager.DisplayAllOrders();
+
         }
 
         abstract class Delivery // Абстрактный класс Delivery
